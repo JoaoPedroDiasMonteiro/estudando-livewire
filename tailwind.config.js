@@ -1,4 +1,8 @@
+const colors = require('tailwindcss/colors')
+const palette = require('./palette')
+
 module.exports = {
+  mode: 'jit',
   purge: [
     './resources/**/*.blade.php',
     './resources/**/*.js',
@@ -6,7 +10,9 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: palette
+    },
   },
   variants: {
     extend: {},
