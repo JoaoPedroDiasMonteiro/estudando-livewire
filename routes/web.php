@@ -15,3 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomeScreen::class)->name('home');
+
+
+Route::get('/dashboard', function() {
+    echo "oi";
+})->name('dashboard');

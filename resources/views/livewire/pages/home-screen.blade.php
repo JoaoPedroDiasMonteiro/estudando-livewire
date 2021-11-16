@@ -1,12 +1,22 @@
-<div x-data="{showContact: false}">
+<div x-data="{showContact: false, showCreateAccount: false}">
     {{-- Hero --}}
     <section class="bg-brand-main text-white">
         <div class="pt-11 mb-6 px-4 container mx-auto flex items-center">
             <div class="inline-block"><img src="/images/logo_white.svg" alt="Feedbacker" /></div>
 
             <div class="items-center hidden md:inline-flex ml-auto">
-                <button @click="alert(1)" class="font-bold text-xl mr-11">Crie uma conta</button>
-                <x-buttons.white>Entrar</x-buttons.white>
+                @auth
+                    <a href="{{ route('dashboard') }}">
+                        <x-buttons.white>Minha Conta</x-buttons.white>
+                    </a>
+                @else
+                    <button class="font-bold text-xl mr-11"
+                        @click="() => {showCreateAccount = true; document.querySelector('body').classList.add('overflow-hidden')}">
+                        Crie uma conta
+                    </button>
+                    <x-buttons.white>Entrar</x-buttons.white>
+                @endauth
+
             </div>
 
             {{-- Mobile Menu --}}
@@ -24,9 +34,15 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                    <button @click="createAccount" class="font-bold text-xl">Crie uma conta</button>
-
-                    <button @click="login" class="font-bold text-xl">Entrar</button>
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="font-bold text-xl block">Minha Conta</a>
+                    @else
+                        <button class="font-bold text-xl"
+                            @click="() => {showCreateAccount = true; document.querySelector('body').classList.add('overflow-hidden')}">
+                            Crie uma conta
+                        </button>
+                        <button @click="login" class="font-bold text-xl">Entrar</button>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -36,9 +52,17 @@
                 <h1 class="font-black text-6xl">Tenha um feedback. E faça seus clientes mais felizes!</h1>
                 <h2 class="text-2xl mt-2 font-normal">Receba ideias, reclamações e feedbacks com um simples widget na
                     página.</h2>
-                <h3 class="mt-12">
-                    <x-buttons.white>Crie uma conta grátis</x-buttons.white>
-                </h3>
+                @auth
+                    <a href="{{ route('dashboard') }}" class="mt-12 block">
+                        <x-buttons.white>Acessar Minha Conta</x-buttons.white>
+                    </a>
+                @else
+                    <h3 class="mt-12"
+                        @click="() => {showCreateAccount = true; document.querySelector('body').classList.add('overflow-hidden')}">
+                        <x-buttons.white>Crie uma conta grátis</x-buttons.white>
+                    </h3>
+                @endauth
+
             </div>
             <div class="hidden md:block lg:w-1/2">
                 <img src="/images/balloons.svg" alt="Tenha um feedback. E faça seus clientes mais felizes!" />
@@ -46,6 +70,10 @@
         </div>
     </section>
 
+
+    <div x-show="showCreateAccount">
+        <livewire:components.create-account-modal>
+    </div>
 
     <div x-show="showContact">
         <livewire:components.contact-modal>
