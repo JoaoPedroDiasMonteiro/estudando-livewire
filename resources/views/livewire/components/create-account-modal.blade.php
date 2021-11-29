@@ -51,10 +51,16 @@
                     @enderror
                 </div>
 
-                <div class="mt-4 self-end">
-                    <x-buttons.brand>
-                        Cadastrar
-                    </x-buttons.brand>
+                <div class="mt-4 self-end flex items-center">
+                    <span wire:loading.remove>
+                        <x-buttons.brand>
+                            Cadastrar
+                        </x-buttons.brand>
+                    </span>
+                    
+                    <span wire:loading.block>
+                        <x-buttons.brand-loading  />
+                    </span>
                 </div>
             </div>
 
