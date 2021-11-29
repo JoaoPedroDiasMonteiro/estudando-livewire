@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Components;
 
+use App\Events\UserRegistered;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -38,6 +39,7 @@ class CreateAccountModal extends Component
             'password' => Hash::make($this->password),
         ]);
         
+        UserRegistered::dispatch($user);
         Auth::login($user);
 
         return redirect()->route('dashboard');
