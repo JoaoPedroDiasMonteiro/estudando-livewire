@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Pages\HomeScreen;
+use App\Http\Livewire\Pages\Home\HomeScreen;
 
 use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;

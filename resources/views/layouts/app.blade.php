@@ -10,11 +10,12 @@
 </head>
 
 <body>
+    <script src="{{ mix('js/app.js') }}"></script>
+
     <main>
         {{ $slot }}
     </main>
 
-    <script src="{{ mix('js/app.js') }}"></script>
     @livewireScripts
 </body>
 
