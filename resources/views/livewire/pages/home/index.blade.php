@@ -6,9 +6,9 @@
         <livewire:components.create-account-modal>
     </div>
 
-    <div x-show="showContact">
-        <livewire:components.contact-modal>
-    </div>    
+
+    <livewire:components.contact-modal>
+  
 
     <div x-show="showLogin">
         <livewire:components.login-modal>

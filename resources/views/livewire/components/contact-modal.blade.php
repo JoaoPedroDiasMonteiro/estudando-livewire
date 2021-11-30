@@ -1,11 +1,12 @@
-<div class="w-full h-screen fixed z-50 top-0 left-0 bg-black bg-opacity-30 p-4 flex items-center justify-center overflow-hidden"
+<div x-show="showContact"
+    class="w-full h-screen fixed z-50 top-0 left-0 bg-black bg-opacity-30 p-4 flex items-center justify-center overflow-hidden"
     @click="() => {showContact = false; document.querySelector('body').classList.remove('overflow-hidden')}"
     x-on:contact-added.window="showContact = false">
-    <div @click.stop class="border border-gray-100 rounded-md shadow-md bg-white">
+
+    <div @click.stop class="border border-gray-100 rounded-md shadow-md bg-white animate__animated animate__fadeInUp animate__faster">
+
         <form wire:submit.prevent="submit" class="md:w-96 p-6 w-72">
             <h1 class="text-2xl font-bold">Entre em Contato</h1>
-
-            
 
             <div class="gap-2 mt-4 flex flex-col">
                 <div class="relative flex flex-col pb-4">
@@ -60,5 +61,4 @@
             </div>
         </form>
     </div>
-
 </div>
