@@ -36,6 +36,8 @@ class ContactModal extends Component
         ]);
 
         $this->reset();
+
+        $this->dispatchBrowserEvent('contact-added');
     }
 
     public function render()
