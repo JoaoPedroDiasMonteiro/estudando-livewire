@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Components;
 
+use App\Models\Contact;
 use Livewire\Component;
 
 class ContactModal extends Component
@@ -27,8 +28,12 @@ class ContactModal extends Component
     {
         $this->validate();
 
-        // send email
-        // ...
+        Contact::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'message' => $this->message,
+        ]);
 
         $this->reset();
     }
