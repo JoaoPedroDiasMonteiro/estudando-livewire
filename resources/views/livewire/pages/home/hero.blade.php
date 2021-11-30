@@ -12,7 +12,12 @@
                     @click="() => {showCreateAccount = true; document.querySelector('body').classList.add('overflow-hidden')}">
                     Crie uma conta
                 </button>
-                <x-buttons.white>Entrar</x-buttons.white>
+                <span
+                    @click="() => {showLogin = true; document.querySelector('body').classList.add('overflow-hidden')}">
+                    <x-buttons.white>
+                        Entrar
+                    </x-buttons.white>
+                </span>
             @endauth
 
         </div>
@@ -29,8 +34,7 @@
                 style="min-width: 200px">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ml-auto h-6 w-6 cursor-pointer" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 @auth
                     <a href="{{ route('dashboard') }}" class="font-bold text-xl block">Minha Conta</a>
@@ -39,7 +43,10 @@
                         @click="() => {showCreateAccount = true; document.querySelector('body').classList.add('overflow-hidden')}">
                         Crie uma conta
                     </button>
-                    <button @click="login" class="font-bold text-xl">Entrar</button>
+                    <button class="font-bold text-xl"
+                        @click="() => {showLogin = true; document.querySelector('body').classList.add('overflow-hidden')}">
+                        Entrar
+                    </button>
                 @endauth
             </div>
         </div>
