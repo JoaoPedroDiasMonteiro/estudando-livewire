@@ -1,9 +1,11 @@
 <?php
 
-use function Pest\Livewire\livewire;
-use App\Http\Livewire\Components\LoginModal;
 use App\Models\User;
-
+use function Pest\Livewire\livewire;
+use Illuminate\Foundation\Testing\TestCase;
+use App\Http\Livewire\Components\LoginModal;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OtherDeviceNotification;
 
 it('checks the component can render', function () {
     livewire(LoginModal::class)
@@ -19,6 +21,8 @@ it('checks the component validate email and password', function () {
 });
 
 it('checks the component submit function', function () {
+    Notification::fake();
+
     $user = User::factory()->create();
 
     livewire(LoginModal::class)
@@ -27,7 +31,9 @@ it('checks the component submit function', function () {
         ->call('submit')
         ->assertHasNoErrors();
 
-        $this->assertAuthenticatedAs($user);
+    Notification::assertSentTo($user, OtherDeviceNotification::class);
+
+    $this->assertAuthenticatedAs($user);
 });
 
 // it('checks the component validate throttle', function () {

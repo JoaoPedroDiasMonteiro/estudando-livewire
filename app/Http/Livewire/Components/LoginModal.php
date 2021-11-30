@@ -26,6 +26,8 @@ class LoginModal extends Component
 
         if ($this->attempt()) {
             session()->regenerate();
+            $this->checkLastConnection();
+
             return redirect()->intended('dashboard');
         }
 
@@ -42,6 +44,16 @@ class LoginModal extends Component
             $this->addError('auth', "Slow down! Please wait another $exception->secondsUntilAvailable seconds to log in.");
 
             return;
+        }
+    }
+
+    private function checkLastConnection(): void
+    {
+        $user = Auth::user();
+
+        if ($user->last_connection !== $lastIp = request()->userAgent()) {
+            $user->last_connection = $lastIp;
+            $user->save();
         }
     }
 
