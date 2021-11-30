@@ -1,9 +1,11 @@
-<div class="w-full h-screen fixed z-50 top-0 left-0 bg-black bg-opacity-30 p-4 flex items-center justify-center"
+<div x-show="showCreateAccount"
+    class="w-full h-screen fixed z-50 top-0 left-0 bg-black bg-opacity-30 p-4 flex items-center justify-center"
     @click="() => {showCreateAccount = false; document.querySelector('body').classList.remove('overflow-hidden')}">
-    <div @click.stop class="border border-gray-100 rounded-md shadow-md bg-white">
+
+    <div @click.stop
+        class="border border-gray-100 rounded-md shadow-md bg-white animate__animated animate__fadeInUp animate__faster">
         <form wire:submit.prevent="submit" class="md:w-96 p-6 w-72">
             <h1 class="text-2xl font-bold">Criar uma Conta</h1>
-
 
             <div class="gap-2 mt-4 flex flex-col">
                 <div class="relative flex flex-col pb-4">
@@ -42,7 +44,8 @@
                 <div class="relative flex flex-col pb-4">
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmação da
                         senha</label>
-                    <input wire:model='password_confirmation' type="password" id="password_confirmation" autocomplete="false"
+                    <input wire:model='password_confirmation' type="password" id="password_confirmation"
+                        autocomplete="false"
                         class="
                             {{ $errors->has('password') ? 'border-red-500' : 'border-gray-300' }}
                             block w-full p-2 mt-1 border rounded-md shadow-sm focus:outline-none  sm:text-sm" />
@@ -57,9 +60,9 @@
                             Cadastrar
                         </x-buttons.brand>
                     </span>
-                    
+
                     <span wire:loading.block>
-                        <x-buttons.brand-loading  />
+                        <x-buttons.brand-loading />
                     </span>
                 </div>
             </div>

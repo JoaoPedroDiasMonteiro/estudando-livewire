@@ -2,15 +2,7 @@
     @include('livewire.pages.home.hero')
     @include('livewire.pages.home.contact')
     
-    <div x-show="showCreateAccount">
-        <livewire:components.create-account-modal>
-    </div>
-
-
+    <livewire:components.create-account-modal>
     <livewire:components.contact-modal>
-  
-
-    <div x-show="showLogin">
-        <livewire:components.login-modal>
-    </div>    
+    <livewire:components.login-modal>
 </div>
