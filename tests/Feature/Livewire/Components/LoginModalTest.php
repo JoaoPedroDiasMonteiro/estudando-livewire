@@ -36,17 +36,16 @@ it('checks the component submit function', function () {
     $this->assertAuthenticatedAs($user);
 });
 
-// it('checks the component validate throttle', function () {
-//     /** @var TestCase $this */
-//     $this->startSession();
+it('checks the component validate throttle', function () {
+    $user = User::factory()->create();
 
-//     $livewire = livewire(LoginModal::class)
-//         ->set('email', '')
-//         ->set('password', '');
+    $livewire = livewire(LoginModal::class)
+        ->set('email', $user->email)
+        ->set('password', 'password');
 
-//     for ($i=0; $i < 5; $i++) { 
-//         $livewire->call('submit');
-//     }
+    for ($i=0; $i < 5; $i++) { 
+        $livewire->call('submit');
+    }
 
-//     $livewire->assertHasErrors(['auth']);
-// });
+    $livewire->assertHasErrors(['auth']);
+});

@@ -21,7 +21,15 @@ class LoginModal extends Component
 
     public function submit()
     {
-        $this->throttle(4);
+        try {
+            $this->rateLimit(4);
+        } catch (TooManyRequestsException $exception) {
+
+            $this->addError('auth', "Slow down! Please wait another $exception->secondsUntilAvailable seconds to log in.");
+
+            return;
+        }
+        
         $this->validate();
 
         if ($this->attempt()) {
